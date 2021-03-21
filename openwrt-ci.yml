@@ -69,6 +69,7 @@ jobs:
        # git clone https://github.com/lisaac/luci-lib-docker.git
        git clone https://github.com/garypang13/luci-app-dnsfilter.git
        git clone https://github.com/tianiun/luci-app-bypass.git
+       git clone https://github.com/sirpdboy/netspeedtest.git
 
     - name: 下载插件
       run: ./scripts/feeds update -a
@@ -208,6 +209,7 @@ jobs:
           # CONFIG_PACKAGE_luci-app-frpc=y
           # CONFIG_PACKAGE_luci-app-iptvhelper=y
           # CONFIG_PACKAGE_luci-app-nps=y
+          CONFIG_PACKAGE_luci-app-netspeedtest=y
           # CONFIG_PACKAGE_luci-lib-docker=y
           # CONFIG_PACKAGE_luci-app-dockerman=y
           CONFIG_PACKAGE_luci-app-mwan3helper=y
@@ -234,6 +236,7 @@ jobs:
           # CONFIG_PACKAGE_luci-theme-netgear=y
           CONFIG_PACKAGE_luci-theme-argon-leanimg=y
           CONFIG_PACKAGE_luci-theme-edge=y
+          CONFIG_PACKAGE_luci-theme-opentopd=y
           # CONFIG_PACKAGE_luci-theme-infinityfreedom=y
           EOF
 
