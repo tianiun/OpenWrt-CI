@@ -71,6 +71,7 @@ jobs:
        git clone https://github.com/tianiun/luci-app-bypass.git
        git clone https://github.com/esirplayground/luci-app-LingTiGameAcc.git
        git clone https://github.com/esirplayground/LingTiGameAcc.git
+       git clone https://github.com/sirpdboy/netspeedtest.git
 
     - name: 下载插件
       run: ./scripts/feeds update -a
@@ -359,6 +360,7 @@ jobs:
           CONFIG_PACKAGE_LingTiGameAcc=y
           CONFIG_PACKAGE_luci-app-LingTiGameAcc=y
           CONFIG_PACKAGE_luci-app-familycloud=y
+          CONFIG_PACKAGE_luci-app-netspeedtest=y
           # CONFIG_PACKAGE_luci-app-docker=y
           CONFIG_PACKAGE_luci-lib-docker=y
           CONFIG_PACKAGE_luci-app-dockerman=y
@@ -390,6 +392,7 @@ jobs:
           # CONFIG_PACKAGE_luci-theme-netgear=y
           CONFIG_PACKAGE_luci-theme-argon-leanimg=y
           CONFIG_PACKAGE_luci-theme-edge=y
+          CONFIG_PACKAGE_luci-theme-opentopd=y
           CONFIG_PACKAGE_luci-theme-infinityfreedom=y
           EOF
 
