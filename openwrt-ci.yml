@@ -386,7 +386,6 @@ jobs:
           # CONFIG_PACKAGE_luci-theme-netgear=y
           CONFIG_PACKAGE_luci-theme-argon-leanimg=y
           CONFIG_PACKAGE_luci-theme-edge=y
-          CONFIG_PACKAGE_luci-theme-opentopd=y
           # CONFIG_PACKAGE_luci-theme-infinityfreedom=y
           EOF
 
