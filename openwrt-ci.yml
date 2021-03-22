@@ -68,8 +68,7 @@ jobs:
        # git clone https://github.com/lisaac/luci-app-dockerman.git
        # git clone https://github.com/lisaac/luci-lib-docker.git
        git clone https://github.com/garypang13/luci-app-dnsfilter.git
-       git clone https://github.com/tianiue/luci-app-bypass.git
-       git clone https://github.com/sirpdboy/netspeedtest.git
+       git clone https://github.com/tianiun/luci-app-bypass.git
 
     - name: 下载插件
       run: ./scripts/feeds update -a
@@ -342,8 +341,8 @@ jobs:
           CONFIG_PACKAGE_luci-app-bypass=y
           CONFIG_PACKAGE_luci-app-clash=y
           CONFIG_PACKAGE_luci-app-openclash=y
-          CONFIG_PACKAGE_smartdns=y
-          CONFIG_PACKAGE_luci-app-smartdns=y
+          # CONFIG_PACKAGE_smartdns=y
+          # CONFIG_PACKAGE_luci-app-smartdns=y
           CONFIG_PACKAGE_oscam=y
           CONFIG_PACKAGE_luci-app-oscam=y
           CONFIG_PACKAGE_tvheadend=y
@@ -386,6 +385,7 @@ jobs:
           # CONFIG_PACKAGE_luci-theme-netgear=y
           CONFIG_PACKAGE_luci-theme-argon-leanimg=y
           CONFIG_PACKAGE_luci-theme-edge=y
+          CONFIG_PACKAGE_luci-theme-opentopd=y
           # CONFIG_PACKAGE_luci-theme-infinityfreedom=y
           EOF
 
@@ -544,7 +544,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 18
+        keep_latest: 9
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE1_TOKEN }}
