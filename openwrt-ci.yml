@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-名字: OpenWrt-LEDE5.4w
+name: OpenWrt-LEDE5.4w
 
 on:
   workflow_dispatch:
