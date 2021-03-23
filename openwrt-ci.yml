@@ -11,7 +11,7 @@ name: OpenWrt-LEDE5.4
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 22 5,15,25 * *
+    - cron: 0 22 8,18,28 * *
   # release:
     # types: [published]
 
@@ -355,7 +355,6 @@ jobs:
           CONFIG_PACKAGE_luci-app-iptvhelper=y
           CONFIG_PACKAGE_luci-app-nps=y
           CONFIG_PACKAGE_luci-app-familycloud=y
-          CONFIG_PACKAGE_luci-app-netspeedtest=y
           # CONFIG_PACKAGE_luci-app-dockerman=y
           # CONFIG_PACKAGE_luci-lib-docker=y
           CONFIG_PACKAGE_luci-app-mwan3helper=y
