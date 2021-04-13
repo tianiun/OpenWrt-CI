@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: OpenWrt-LEDE5.4w
+name: OpenWrt-LEDE5.4i
 
 on:
   workflow_dispatch:
@@ -59,16 +59,16 @@ jobs:
        git clone https://github.com/xiaorouji/openwrt-passwall.git
        git clone https://github.com/fw876/helloworld.git
        git clone https://github.com/vernesong/OpenClash.git
-       git clone https://github.com/frainzy1477/luci-app-clash.git
+       # git clone https://github.com/frainzy1477/luci-app-clash.git
        git clone https://github.com/destan19/OpenAppFilter.git
        git clone https://github.com/jerrykuku/luci-app-ttnode.git
        git clone https://github.com/linkease/ddnsto-openwrt.git
        git clone https://github.com/jerrykuku/luci-app-vssr.git
        git clone https://github.com/jerrykuku/lua-maxminddb.git
-       # git clone https://github.com/lisaac/luci-app-dockerman.git
-       # git clone https://github.com/lisaac/luci-lib-docker.git
-       git clone https://github.com/garypang13/luci-app-dnsfilter.git
-       git clone https://github.com/tianiue/luci-app-bypass.git
+       git clone https://github.com/lisaac/luci-app-dockerman.git
+       git clone https://github.com/lisaac/luci-lib-docker.git
+       # git clone https://github.com/garypang13/luci-app-dnsfilter.git
+       # git clone https://github.com/tianiue/luci-app-bypass.git
 
     - name: 下载插件
       run: ./scripts/feeds update -a
@@ -130,8 +130,8 @@ jobs:
 
           # 设置固件大小:
           cat >> .config <<EOF
-          CONFIG_TARGET_KERNEL_PARTSIZE=32
-          CONFIG_TARGET_ROOTFS_PARTSIZE=479
+          CONFIG_TARGET_KERNEL_PARTSIZE=64
+          CONFIG_TARGET_ROOTFS_PARTSIZE=960
           EOF
 
           # 编译UEFI固件:
@@ -337,12 +337,12 @@ jobs:
           CONFIG_PACKAGE_luci-app-jd-dailybonus=y
           CONFIG_PACKAGE_ddnsto=y
           CONFIG_PACKAGE_luci-app-ddnsto=y
-          CONFIG_PACKAGE_luci-app-dnsfilter=y
-          CONFIG_PACKAGE_luci-app-bypass=y
-          CONFIG_PACKAGE_luci-app-clash=y
+          # CONFIG_PACKAGE_luci-app-dnsfilter=y
+          # CONFIG_PACKAGE_luci-app-bypass=y
+          # CONFIG_PACKAGE_luci-app-clash=y
           CONFIG_PACKAGE_luci-app-openclash=y
-          # CONFIG_PACKAGE_smartdns=y
-          # CONFIG_PACKAGE_luci-app-smartdns=y
+          CONFIG_PACKAGE_smartdns=y
+          CONFIG_PACKAGE_luci-app-smartdns=y
           CONFIG_PACKAGE_oscam=y
           CONFIG_PACKAGE_luci-app-oscam=y
           CONFIG_PACKAGE_tvheadend=y
@@ -354,8 +354,8 @@ jobs:
           CONFIG_PACKAGE_luci-app-iptvhelper=y
           CONFIG_PACKAGE_luci-app-nps=y
           CONFIG_PACKAGE_luci-app-familycloud=y
-          # CONFIG_PACKAGE_luci-app-dockerman=y
-          # CONFIG_PACKAGE_luci-lib-docker=y
+          CONFIG_PACKAGE_luci-app-dockerman=y
+          CONFIG_PACKAGE_luci-lib-docker=y
           CONFIG_PACKAGE_luci-app-mwan3helper=y
           # CONFIG_PACKAGE_luci-app-v2ray-server=y
           CONFIG_PACKAGE_luci-app-kodexplorer=y
@@ -423,7 +423,7 @@ jobs:
         # sed -i '/uci commit system/i\uci set system.@system[0].hostname='OpenWrt-1.0'' package/lean/default-settings/files/zzz-default-settings
        
         # 版本号里显示一个自己的名字（Lan build $(TZ=UTC-8 date "+%Y.%m.%d") @ 这些都是后增加的）
-        sed -i "s/OpenWrt /World build $(TZ=UTC-8 date "+%Y%m%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
+        sed -i "s/OpenWrt /Fine build $(TZ=UTC-8 date "+%Y%m%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
        
         # 修改argon为默认主题,可根据你喜欢的修改成其他的（不选择那些会自动改变为默认主题的主题才有效果）
         # sed -i 's/luci-theme-bootstrap/luci-theme-argon-leanimg/g' feeds/luci/collections/luci/Makefile
@@ -439,10 +439,10 @@ jobs:
         sed -i 's/"实时流量监测"/"流量"/g' package/lean/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po
 
         # 修改bypass支持lean源码shadowsocksr-libev-ssr-redir重命名
-        find package/*/ feeds/*/ -maxdepth 5 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
+        # find package/*/ feeds/*/ -maxdepth 5 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
       
         # 修改bypass支持lean源码shadowsocksr-libev-ssr-server重命名
-        find package/*/ feeds/*/ -maxdepth 5 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
+        # find package/*/ feeds/*/ -maxdepth 5 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 
     - name: 下载安装包
       id: package
@@ -535,7 +535,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE1_TOKEN }}
       with:
-        name: ${{ env.FILE_TIME }} 「 OpenWrt-LEDE5.4-X86-64-World 」
+        name: ${{ env.FILE_TIME }} 「 OpenWrt-LEDE5.4-X86-64-Fine 」
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
