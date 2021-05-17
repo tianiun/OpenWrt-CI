@@ -59,9 +59,9 @@ jobs:
        git clone https://github.com/xiaorouji/openwrt-passwall.git
        git clone https://github.com/fw876/helloworld.git
        git clone https://github.com/vernesong/OpenClash.git
-       # git clone https://github.com/frainzy1477/luci-app-clash.git
+       git clone https://github.com/frainzy1477/luci-app-clash.git
        git clone https://github.com/destan19/OpenAppFilter.git
-       git clone https://github.com/jerrykuku/luci-app-ttnode.git
+       # git clone https://github.com/jerrykuku/luci-app-ttnode.git
        git clone https://github.com/linkease/ddnsto-openwrt.git
        git clone https://github.com/jerrykuku/luci-app-vssr.git
        git clone https://github.com/jerrykuku/lua-maxminddb.git
@@ -330,7 +330,7 @@ jobs:
           CONFIG_PACKAGE_lua-maxminddb=y
           CONFIG_PACKAGE_luci-app-passwall=y
           # CONFIG_PACKAGE_luci-app-koolproxyR=y
-          CONFIG_PACKAGE_luci-app-ttnode=y
+          # CONFIG_PACKAGE_luci-app-ttnode=y
           CONFIG_PACKAGE_adguardhome=y
           CONFIG_PACKAGE_luci-app-adguardhome=y
           CONFIG_PACKAGE_luci-app-ssr-plus=y
@@ -339,7 +339,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-ddnsto=y
           # CONFIG_PACKAGE_luci-app-dnsfilter=y
           # CONFIG_PACKAGE_luci-app-bypass=y
-          # CONFIG_PACKAGE_luci-app-clash=y
+          CONFIG_PACKAGE_luci-app-clash=y
           CONFIG_PACKAGE_luci-app-openclash=y
           CONFIG_PACKAGE_smartdns=y
           CONFIG_PACKAGE_luci-app-smartdns=y
@@ -437,12 +437,6 @@ jobs:
         sed -i 's/"BaiduPCS Web"/"百度网盘"/g' package/lean/luci-app-baidupcs-web/luasrc/controller/baidupcs-web.lua
         sed -i 's/"带宽监控"/"带宽"/g' feeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
         sed -i 's/"实时流量监测"/"流量"/g' package/lean/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po
-
-        # 修改bypass支持lean源码shadowsocksr-libev-ssr-redir重命名
-        # find package/*/ feeds/*/ -maxdepth 5 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-      
-        # 修改bypass支持lean源码shadowsocksr-libev-ssr-server重命名
-        # find package/*/ feeds/*/ -maxdepth 5 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 
     - name: 下载安装包
       id: package
